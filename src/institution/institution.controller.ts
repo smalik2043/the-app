@@ -10,4 +10,11 @@ export class InstitutionController {
   getTopInstitutions(@Param('subjectName') subjectName: string): ITopInstitution {
     return this.instituionService.getTopInstituions(subjectName);
   }
+
+  @Get()
+  async getUniversities() {
+    const universities = await this.instituionService.getUniversities();
+    console.log('universities', universities);
+    return universities;
+  }
 }

@@ -8,6 +8,21 @@ services:
     ports:
       - '3000:3000'
     container_name: the-app
+    depends_on:
+      - postgres
     volumes:
       - .:/app
       - /app/node_modules
+  postgres:
+    container_name: postgres-db
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=supersecretpassword
+      - POSTGRES_USER=THE
+      - POSTGRES_DB=THE
+    ports:
+      - '5432:5432'
+    volumes:
+      - pg_data_app:/var/lib/postgresql/data
+volumes:
+  pg_data_app:

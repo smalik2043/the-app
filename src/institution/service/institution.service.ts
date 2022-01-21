@@ -1,11 +1,13 @@
-import { ISubmission, ITopInstitution } from '../interface';
+import { ISubmission, ITopInstitution, IUniversities } from '../interface';
 import { submissionsObj } from '../fixtures/submissions';
 import { institutionsObj } from '../fixtures/institutions';
 import { Injectable } from '@nestjs/common';
+import { UniversityRepository } from '../repository/unversity.repository';
 
 @Injectable()
 export class InstitutionService {
 
+    constructor(private readonly unveristyRepository: UniversityRepository){}
     /*
         I am using the service layer to do the computation. If I would be using database
         tp store the records and retrieve the records I will use the repository folder to
@@ -46,5 +48,9 @@ export class InstitutionService {
         return  {
             topInstitutions: topInstitionsBySubject.sort((a, b) => b.subject_rating - a.subject_rating)
         }
+    }
+
+    public async getUniversities(): Promise<IUniversities[]> {
+        return this.unveristyRepository.find();
     }
 }

@@ -22,3 +22,11 @@ export interface IInstituion {
 export interface ITopInstitution {
     topInstitutions: ISubmission[];
 }
+
+export interface IUniversities {
+    id: string;
+    name: string;
+    region: string;
+    country: string;
+    address: string;
+}
